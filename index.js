@@ -1,6 +1,8 @@
 const { Client, GatewayIntentBits, Collection, Events } = require('discord.js');
 const fs = require('fs');
 const { initializeCronJobs } = require('./utils/scheduledTasks');
+const keepAlive = require('./server');
+
 require('dotenv').config();
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.MessageContent] });
@@ -49,3 +51,4 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.login(process.env.DISCORD_TOKEN);
+keepAlive();
